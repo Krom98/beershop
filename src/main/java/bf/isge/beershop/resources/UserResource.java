@@ -1,7 +1,7 @@
 package bf.isge.beershop.resources;
 
 import bf.isge.beershop.domain.User;
-import bf.isge.beershop.resources.dto.UserDto;
+import bf.isge.beershop.dto.UserDto;
 import bf.isge.beershop.services.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,12 @@ public class UserResource {
     @GetMapping(value = "/findOneRequestParam")
     ResponseEntity<UserDto> findOneRequestParam(@RequestParam(value = "email") String email){
         log.info("email : {}", email);
-        return ResponseEntity.ok().build();
+        userService.findByEmail(email);
+     //   List<UserDto> userDtos = new ArrayList<>();
+        User user = userService.findByEmail(email);
+       //    mapToUserDto(user);
+
+        return new ResponseEntity<>(mapToUserDto(user),HttpStatus.OK);
     }
 
     @GetMapping(value = "/findOnePathVariable/{email}")
@@ -41,6 +46,10 @@ public class UserResource {
     @GetMapping(value = "/findAll")
     ResponseEntity<List<UserDto>> findAll(){
         List<UserDto> userDtos = new ArrayList<>();
+        List<User> users = userService.finAllUser();
+        for(User user: users){
+            userDtos.add(mapToUserDto(user));
+        }
         return new ResponseEntity<>(userDtos, HttpStatus.OK);
     }
 

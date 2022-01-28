@@ -8,6 +8,7 @@ public class BeerShopApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BeerShopApplication.class, args);
+		//@Franck Romuald KABORE
 	}
 
 }

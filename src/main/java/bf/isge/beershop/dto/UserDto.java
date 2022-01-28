@@ -1,4 +1,4 @@
-package bf.isge.beershop.resources.dto;
+package bf.isge.beershop.dto;
 
 import lombok.Getter;
 import lombok.Setter;
